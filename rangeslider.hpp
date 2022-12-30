@@ -43,6 +43,7 @@ protected:
 Q_SIGNALS:
     void lowerValueChanged(int aLowerValue);
     void upperValueChanged(int aUpperValue);
+    void valuesChanged(int lower, int upper);
     void rangeChanged(int aMin, int aMax);
 
 public Q_SLOTS:

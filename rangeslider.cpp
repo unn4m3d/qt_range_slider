@@ -23,7 +23,8 @@ RangeSlider::RangeSlider(QWidget* aParent)
       mBackgroudColorEnabled(QColor(0x1E, 0x90, 0xFF)),
       mBackgroudColorDisabled(Qt::darkGray),
       mBackgroudColor(mBackgroudColorEnabled),
-      orientation(Qt::Horizontal)
+      orientation(Qt::Horizontal),
+      type(DoubleHandles)
 {
     setMouseTracking(true);
 }
@@ -262,6 +263,7 @@ void RangeSlider::setLowerValue(int aLowerValue)
 
     mLowerValue = aLowerValue;
     Q_EMIT lowerValueChanged(mLowerValue);
+    Q_EMIT valuesChanged(mLowerValue, mUpperValue);
 
     update();
 }
@@ -280,6 +282,7 @@ void RangeSlider::setUpperValue(int aUpperValue)
 
     mUpperValue = aUpperValue;
     Q_EMIT upperValueChanged(mUpperValue);
+    Q_EMIT valuesChanged(mLowerValue, mUpperValue);
 
     update();
 }
