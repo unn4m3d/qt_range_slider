@@ -23,19 +23,11 @@ public:
 
     QSize minimumSizeHint() const override;
 
-    int GetMinimun() const;
-    void SetMinimum(int aMinimum);
-
-    int GetMaximun() const;
-    void SetMaximum(int aMaximum);
-
-    int GetLowerValue() const;
-    void SetLowerValue(int aLowerValue);
-
-    int GetUpperValue() const;
-    void SetUpperValue(int aUpperValue);
-
-    void SetRange(int aMinimum, int aMaximum);
+    int minimum() const;
+    int maximum() const;
+    int lowerValue() const;
+    int upperValue() const;
+    void setRange(int aMinimum, int aMaximum);
 
 protected:
     void paintEvent(QPaintEvent* aEvent) override;
@@ -48,12 +40,12 @@ protected:
     QRectF secondHandleRect() const;
     QRectF handleRect(int aValue) const;
 
-signals:
+Q_SIGNALS:
     void lowerValueChanged(int aLowerValue);
     void upperValueChanged(int aUpperValue);
     void rangeChanged(int aMin, int aMax);
 
-public slots:
+public Q_SLOTS:
     void setLowerValue(int aLowerValue);
     void setUpperValue(int aUpperValue);
     void setMinimum(int aMinimum);

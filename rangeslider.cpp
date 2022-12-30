@@ -1,5 +1,5 @@
 
-#include "RangeSlider.h"
+#include "rangeslider.hpp"
 #include <QDebug>
 
 namespace
@@ -227,45 +227,26 @@ QSize RangeSlider::minimumSizeHint() const
     return QSize(scHandleSideLength * 2 + scLeftRightMargin * 2, scHandleSideLength);
 }
 
-int RangeSlider::GetMinimun() const
+int RangeSlider::minimum() const
 {
     return mMinimum;
 }
 
-void RangeSlider::SetMinimum(int aMinimum)
-{
-    setMinimum(aMinimum);
-}
-
-int RangeSlider::GetMaximun() const
+int RangeSlider::maximum() const
 {
     return mMaximum;
 }
 
-void RangeSlider::SetMaximum(int aMaximum)
-{
-    setMaximum(aMaximum);
-}
-
-int RangeSlider::GetLowerValue() const
+int RangeSlider::lowerValue() const
 {
     return mLowerValue;
 }
 
-void RangeSlider::SetLowerValue(int aLowerValue)
-{
-    setLowerValue(aLowerValue);
-}
-
-int RangeSlider::GetUpperValue() const
+int RangeSlider::upperValue() const
 {
     return mUpperValue;
 }
 
-void RangeSlider::SetUpperValue(int aUpperValue)
-{
-    setUpperValue(aUpperValue);
-}
 
 void RangeSlider::setLowerValue(int aLowerValue)
 {
@@ -280,7 +261,7 @@ void RangeSlider::setLowerValue(int aLowerValue)
     }
 
     mLowerValue = aLowerValue;
-    emit lowerValueChanged(mLowerValue);
+    Q_EMIT lowerValueChanged(mLowerValue);
 
     update();
 }
@@ -298,7 +279,7 @@ void RangeSlider::setUpperValue(int aUpperValue)
     }
 
     mUpperValue = aUpperValue;
-    emit upperValueChanged(mUpperValue);
+    Q_EMIT upperValueChanged(mUpperValue);
 
     update();
 }
@@ -321,7 +302,7 @@ void RangeSlider::setMinimum(int aMinimum)
     setLowerValue(mMinimum);
     setUpperValue(mMaximum);
 
-    emit rangeChanged(mMinimum, mMaximum);
+    Q_EMIT rangeChanged(mMinimum, mMaximum);
 }
 
 void RangeSlider::setMaximum(int aMaximum)
@@ -342,7 +323,7 @@ void RangeSlider::setMaximum(int aMaximum)
     setLowerValue(mMinimum);
     setUpperValue(mMaximum);
 
-    emit rangeChanged(mMinimum, mMaximum);
+    Q_EMIT rangeChanged(mMinimum, mMaximum);
 }
 
 int RangeSlider::validLength() const
@@ -351,7 +332,7 @@ int RangeSlider::validLength() const
     return len - scLeftRightMargin * 2 - scHandleSideLength * (type.testFlag(DoubleHandles) ? 2 : 1);
 }
 
-void RangeSlider::SetRange(int aMinimum, int mMaximum)
+void RangeSlider::setRange(int aMinimum, int mMaximum)
 {
     setMinimum(aMinimum);
     setMaximum(mMaximum);
